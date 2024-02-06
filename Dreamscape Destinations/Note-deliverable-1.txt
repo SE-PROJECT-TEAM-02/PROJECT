@@ -1,6 +1,15 @@
 DELIVERABLE 1
 
-We have submitted -
+We have submitted in canvas -
   deliverable 1 file, 
   Powerpoint presentation of deliverable 1,
-  Vedio recording of deliverable 1.
+  Video recording of deliverable 1.
+
+In directory Meeting_Minutes(Dreamscape Destinations/Meeting_Minutes), we have created the directory.
+In directory Planning documents(Dreamscape Destinations/Planning_Documents), we have 
+  -SE-Project-Team-02_Week2-Pop-Quiz-TeamPlanning.pdf
+  -Team_02_Member_List.pdf 
+In directory Project_Reports(Dreamscape Destinations/Project_Reports), we have
+  -SE-PROJECT-TEAM-02-Del-1.pptx
+  -SE-PROJECT-TEAM-02-Deliverable_1.pdf
+In directory Source_Code(Dreamscape Destinations/Source_Code), we have just created the directory.
