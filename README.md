@@ -19,6 +19,7 @@ We have divided dreamscape project into two major categories, 1 is to do all the
 | -------------------------| ---------------------------------------------------------------------------------------------- | -------------------- |
 | Veeresh sakali           | Arranged meetings discussions and assigned tasks                                               |    12.5%      |
 | Susmith Meesa            | Sorted out techincal requirements such as softwares, languages and databses to be used         |    12.5%      |
+| Harshath Budida          | Market research for project idea and broguht new ideas for current ideas                       |    12.5%      |
 | Harshitha Thokala        | Did project time analysis and created Gantt chart for project tracking                         |    12.5%      |
 | Gopi Krishna Kummari     | Responsible to setup git hub repositories, and ReadMe Files.                                   |    12.5%      |
 | Pooja Sree Poka          | jot down all tasks assigned to each member and write down in detail                            |    12.5%      |
