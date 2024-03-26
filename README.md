@@ -1,43 +1,70 @@
-#                              DREAM SCAPE DESTINATIONS
+# Getting Started with Create React App
 
-##                         DESCRIPTION
-Embark on an unforgettable journey with our modern online excursion and travel agency! Our vision is to create a continuing platform wherein vacationers can discover a myriad of destinations, customize their dream vacations, and book their adventures quite simply. Our platform will revolutionize the manner vacationers plan and book their journeys by supplying a comprehensive range of features and offerings. Users will have the liberty to browse through an in-depth catalog of excursions spanning various locations international. From exceptional seaside getaways to cultural expeditions, our platform will showcase a plethora of tour stories to encourage wanderlust. 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-We recognize that each traveler has specific options. Our platform will empower customers to personalize their tour packages by deciding on extra offerings which include lodging possibilities, transportation alternatives, meal plans, and more. This stage of flexibility guarantees that each journey is adapted to fulfill a man's or woman's needs. Transparency is key in building trust with our clients. We will provide precise pricing facts for every tour bundle, consisting of breakdowns of prices along with accommodation, transportation, food, and additional services. Users can have complete visibility into the overall value of their chosen itinerary.
+## Available Scripts
 
-In terms of technical info, we can leverage the power of Node.Js with the Express framework for backend improvement, allowing scalability and efficiency in handling personal requests. Our backend system might be related to an SQLite3 database, facilitating seamless storage and retrieval of user facts, tour facts, reserving information, and more. On the front end, we will utilize React, an effective JavaScript library known for its flexibility and performance, at the side of Bootstrap for responsive layout and person-pleasant interfaces across devices. By combining cutting-edge era with an ardor for exploration, we are poised to redefine the journey enjoy, and inspire wanderlust in adventurers worldwide. Get prepared to embark on a journey in no way earlier than!
+In the project directory, you can run:
 
+### `npm start`
 
-##          INITIAL PLAN
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-We have divided dreamscape project into two major categories, 1 is to do all the theoretical work which include project planning, team building, risk analysis, SWOT analysis and time analysis where the 2nd part is to practically implement the dreamscape project on real grounds. Let’s dig into each milestone as shown in this GANT chart.
+### `npm test`
 
-##        CONTRIBUTION
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-| First Header             |     Contrubution                                                                               | Overall contribution |
-| -------------------------| ---------------------------------------------------------------------------------------------- | -------------------- |
-| Veeresh sakali           | Arranged meetings discussions and assigned tasks                                               |    12.5%      |
-| Susmith Meesa            | Sorted out techincal requirements such as softwares, languages and databses to be used         |    12.5%      |
-| Harshath Budida          | Market research for project idea and broguht new ideas for current ideas                       |    12.5%      |
-| Harshitha Thokala        | Did project time analysis and created Gantt chart for project tracking                         |    12.5%      |
-| Gopi Krishna Kummari     | Responsible to setup git hub repositories, and ReadMe Files.                                   |    12.5%      |
-| Pooja Sree Poka          | jot down all tasks assigned to each member and write down in detail                            |    12.5%      |
-| Sashidhar chary          | Worked on the risk analysis for this business idea                                             |    12.5%      |
-| Balaji Valeti            | equally divide all the work-load as a Gantt chart and also describe each part                  |    12.5%      |
+### `npm run build`
 
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run eject`
 
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-This site was built using [GitHub Pages](https://github.com/SE-PROJECT-TEAM-02).
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-The daily activites such as stories, task updates and their updates of individuals involved in the project can be seen on [TRELLO](https://trello.com/w/userworkspace15206762).
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+## Learn More
 
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
+To learn React, check out the [React documentation](https://reactjs.org/).
 
+### Code Splitting
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
