@@ -1,13 +1,64 @@
 import React from 'react';
 import Data from './Data/Book-Data';
+import axios from 'axios';
 
 const Book = () => {
 	const destinations = Data;
+	
 
 	// display return date if `round trip` is selected
 	const roundTripHandleChange = event => {
     document.getElementById('return-date').style.visibility =
 		event.checked && event.id === 'round-trip' ? 'hidden' : 'visible';
+	const options = {
+		method: 'POST',
+		url: 'https://travel-advisor.p.rapidapi.com/locations/v2/list-nearby',
+		params: {
+		currency: 'USD',
+		units: 'km',
+		lang: 'en_US'
+		},
+		headers: {
+		'content-type': 'application/json',
+		'X-RapidAPI-Key': 'b432c645a6mshced874f573bbdb8p128504jsna632a17a58d0',
+		'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+		},
+		data: {
+		contentId: 'cc8fc7b8-88ed-47d3-a70e-0de9991f6604',
+		contentType: 'restaurant',
+		filters: [
+			{
+			id: 'placetype',
+			value: [
+				'hotel',
+				'attraction',
+				'restaurant'
+			]
+			},
+			{
+			id: 'minRating',
+			value: ['30']
+			}
+		],
+		boundingBox: {
+			northEastCorner: {
+			latitude: 12.248278039408776,
+			longitude: 109.1981618106365
+			},
+			southWestCorner: {
+			latitude: 12.243407232845051,
+			longitude: 109.1921640560031
+			}
+		}
+		}
+	};
+		
+	try {
+		const response = axios.request(options);
+		console.log(response.data);
+	} catch (error) {
+		console.error(error);
+	}
   };
 
 	// hide return date if `one way` is selected
@@ -94,11 +145,11 @@ const Book = () => {
 					</div>
 
 					{/* SEARCH DEALS */}
-          <div className="w-full">
-              <h2 className="mb-8 text-teal-400 text-center">
-                  Don't miss these deals
-              </h2>
-          </div>
+					<div className="w-full">
+						<h2 className="mb-8 text-teal-400 text-center">
+							Don't miss these deals
+						</h2>
+					</div>
 
 					<div className="images grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
 						{destinations.map((city) => (
