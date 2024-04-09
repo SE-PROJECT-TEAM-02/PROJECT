@@ -208,3 +208,7 @@
 .profile .btn {
   @apply py-1 px-3 flex items-center text-xs bg-gray-800 hover:bg-transparent text-gray-200 border-2 border-gray-800 hover:text-gray-800 rounded-md transition-all ease-in duration-300;
 }
+
+textarea {
+  width: 100%;
+}
