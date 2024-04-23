@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
- const secret = process.env.SECRET;
+ const secret = '1B75482895F9E5A75740BE640E19DDC75B1D77F9D56D49F82F4674BA08F93F1D';
  const expiration = '2h';
 
  module.exports = {
     signToken: function({ username, email, _id }) {
         const payload = { username, email, _id };
-
+        console.log(secret);
         return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
     },
 

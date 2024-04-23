@@ -26,6 +26,7 @@ import NoMatch from "./pages/NoMatch";
 import SinglePost from "./pages/SinglePost";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
+import DestinationBooking from "./pages/DestinationBooking"
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -56,6 +57,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/destination/:id" element={<DestinationBooking />} />
             <Route
               path="/login"
               element={loggedIn ? <Navigate to="/" /> : <Login />}
