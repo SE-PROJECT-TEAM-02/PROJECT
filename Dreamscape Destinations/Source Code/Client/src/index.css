@@ -211,4 +211,6 @@
 
 textarea {
   width: 100%;
+  border-radius: 1rem;
+  padding: 1rem;
 }

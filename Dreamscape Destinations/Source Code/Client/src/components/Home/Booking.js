@@ -1,9 +1,11 @@
 import React from "react";
 import Data from "./Data/Book-Data";
 import axios from "axios";
+import { useState } from "react";
 
 const Book = () => {
   const destinations = Data;
+  const [price, setPrice] = useState(false);
 
   // display return date if `round trip` is selected
   const roundTripHandleChange = (event) => {
@@ -55,6 +57,11 @@ const Book = () => {
       console.error(error);
     }
   };
+  const checkBestPrices = (event) => {
+    event.preventDefault();
+    console.log("CLICK");
+    setPrice(true);
+  };
 
   // hide return date if `one way` is selected
   const oneWayHandleChange = (event) => {
@@ -65,10 +72,10 @@ const Book = () => {
   return (
     <div
       name="book"
-      className="book w-full h-full md:h-screen relative p-8 mb-6"
+      className="book w-full relative p-8 mb-6 mt-4"
     >
       <div className="w-full md:max-w-screen-lg h-full mx-auto flex flex-col justify-center items-center">
-        <h1>Spend Less. Travel More.</h1>
+        <h1>Find the best prices</h1>
 
         <div className="w-full md:max-w-screen-lg flex flex-row flex-wrap justify-center items-center">
           {/* SEARCH DESTINATIONS */}
@@ -134,13 +141,145 @@ const Book = () => {
                   <input type="date" />
                 </div>
                 <div className="pt-6">
-                  <button className="primary w-full h-[43px]">
-                    Find Your Trip
+                  <button
+                    className="primary w-full h-[43px]"
+                    onClick={checkBestPrices}
+                  >
+                    Find Best Prices
                   </button>
                 </div>
               </div>
             </form>
           </div>
+          {price ? (
+            <div className="min-w-full bg-slate-600/30 rounded-md px-60 py-4">
+              <p className="font-bold">Flights</p>
+              <hr class="h-px my-1 bg-slate-200/50 border-0 dark:bg-slate-300" />
+              <div className="pl-10">
+                <div className="flex justify-start items-center">
+                  <input
+                      type="radio"
+                      id="one-way"
+                      name="flight-selection"
+                      value="Qatar"
+                    />
+                  <div className="font-normal ml-3">Qatar Airways</div>
+                  <div className="text-red-400 font-semibold ml-auto">
+                    $70
+                  </div>
+                </div>
+                <div className="flex justify-start items-center">
+                  <input
+                        type="radio"
+                        id="one-way"
+                        name="flight-selection"
+                        value="Eurowings"
+                      />
+                  <div className="font-normal ml-3">Eurowings</div>
+                  <div className="text-red-400 font-semibold ml-auto">
+                    $68
+                  </div>
+                </div>
+                <div className="flex justify-start items-center">
+                  <input
+                        type="radio"
+                        id="one-way"
+                        name="flight-selection"
+                        value="Emirates"
+                      />
+                  <div className="font-normal ml-3">Emirates</div>
+                  <div className="text-red-400 font-semibold ml-auto">
+                    $70
+                  </div>
+                </div>
+              </div>
+
+              <p className="font-bold">Hotel</p>
+              <hr class="h-px my-1 bg-slate-200/50 border-0 dark:bg-slate-300" />
+              <div className="pl-10">
+                <div className="flex justify-start items-center">
+                  <input
+                      type="radio"
+                      id="one-way"
+                      name="hotel-selection"
+                      value="Qatar"
+                    />
+                  <div className="font-normal ml-3">Icos Aria</div>
+                  <div className="text-red-400 font-semibold ml-auto">
+                    $70
+                  </div>
+                </div>
+                <div className="flex justify-start items-center">
+                  <input
+                        type="radio"
+                        id="one-way"
+                        name="hotel-selection"
+                        value="Eurowings"
+                      />
+                  <div className="font-normal ml-3">Hotel Colline</div>
+                  <div className="text-red-400 font-semibold ml-auto">
+                    $68
+                  </div>
+                </div>
+                <div className="flex justify-start items-center">
+                  <input
+                        type="radio"
+                        id="one-way"
+                        name="hotel-selection"
+                        value="Emirates"
+                      />
+                  <div className="font-normal ml-3">Tulemar Resort</div>
+                  <div className="text-red-400 font-semibold ml-auto">
+                    $70
+                  </div>
+                </div>
+              </div>
+
+              <p className="font-bold">Guide</p>
+              <hr class="h-px my-1 bg-slate-200/50 border-0 dark:bg-slate-300" />
+              <div className="pl-10">
+                <div className="flex justify-start items-center">
+                  <input
+                      type="radio"
+                      id="one-way"
+                      name="guide-selection"
+                      value="Qatar"
+                    />
+                  <div className="font-normal ml-3">Full Time</div>
+                  <div className="text-red-400 font-semibold ml-auto">
+                    $90
+                  </div>
+                </div>
+                <div className="flex justify-start items-center">
+                  <input
+                        type="radio"
+                        id="one-way"
+                        name="guide-selection"
+                        value="Eurowings"
+                      />
+                  <div className="font-normal ml-3">Part Time</div>
+                  <div className="text-red-400 font-semibold ml-auto">
+                    $50
+                  </div>
+                </div>
+              </div>
+
+              <hr class="h-px my-1 bg-slate-700 border-0 dark:bg-slate-700" />
+              <div className="flex justify-start items-center">
+                  <div className="font-bold">Total</div>
+                  <div className="text-red-400 font-semibold ml-auto">
+                    $350
+                  </div>
+                </div>
+              <button className="primary w-full mt-4">Book Now</button>
+            </div>
+          ) : (
+            <>
+              <p>
+                Please Enter your Dream Destination to check the best prices
+              </p>
+            </>
+          )}
 
           {/* SEARCH DEALS */}
           <div className="w-full">
