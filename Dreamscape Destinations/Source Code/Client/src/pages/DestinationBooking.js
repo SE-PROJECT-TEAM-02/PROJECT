@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import {ToastContainer } from 'react-toastify';
 import Auth from "../utils/auth";
 import Layout from "../components/Layout/Dashboard";
 import Data from "../components/Home/Data/Discover-Data";
