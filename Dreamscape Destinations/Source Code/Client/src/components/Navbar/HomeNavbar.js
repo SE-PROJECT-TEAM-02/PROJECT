@@ -31,7 +31,7 @@ const HomeNavbar = () => {
 				<ul className="hidden md:flex">
 					<Link to="home" smooth={true} duration={500}><li>Home</li></Link>
 					<Link to="search" smooth={true} duration={500}><li>Search</li></Link>
-					<Link to="book" smooth={true} duration={500}><li>Book</li></Link>
+					<a href='/booking'><li>Booking</li></a>
 					<Link to="discover" smooth={true} duration={500}><li>Discover</li></Link>
 					<Link to="about" smooth={true} duration={500}><li>Our Story</li></Link>
 				</ul>
