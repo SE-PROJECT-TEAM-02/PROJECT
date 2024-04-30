@@ -1,11 +1,26 @@
 import React from "react";
 import Data from "./Data/Book-Data";
+import BookData from "./Data/Booking";
 import axios from "axios";
 import { useState } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Book = () => {
   const destinations = Data;
+  const BookingData = BookData;
+  const [selectedOptions, setSelectedOptions] = useState({
+    flight: null,
+    hotel: null,
+    guide: null
+  });
+  const [passengers, setPassengers] = useState(1);
+  const [departureDate, setDepartureDate] = useState(new Date().toISOString().slice(0, 10));
+  const [returnDate, setReturnDate] = useState(new Date().toISOString().slice(0, 10));
+  const [differenceInDays, setDifferenceInDays] = useState(0);
   const [price, setPrice] = useState(false);
+
+  
 
   // display return date if `round trip` is selected
   const roundTripHandleChange = (event) => {
@@ -57,9 +72,53 @@ const Book = () => {
       console.error(error);
     }
   };
+  // Function to calculate total price
+  const calculateTotalPrice = () => {
+    // Calculate total price based on selected options
+    let totalPrice = 0;
+    if (selectedOptions.flight) {
+      totalPrice += selectedOptions.flight.price;
+    }
+    if (selectedOptions.hotel) {
+      totalPrice += selectedOptions.hotel.price;
+    }
+    if (selectedOptions.guide) {
+      totalPrice += selectedOptions.guide.price;
+    }
+    setPrice(totalPrice);
+  };
+
+  // Event handler for selecting flight
+  const handleFlightSelection = (flight) => {
+    setSelectedOptions({ ...selectedOptions, flight });
+    calculateTotalPrice();
+  };
+
+  // Event handler for selecting hotel
+  const handleHotelSelection = (hotel) => {
+    setSelectedOptions({ ...selectedOptions, hotel });
+    calculateTotalPrice();
+  };
+
+  // Event handler for selecting guide
+  const handleGuideSelection = (guide) => {
+    setSelectedOptions({ ...selectedOptions, guide });
+    calculateTotalPrice();
+  };
+
+  // Event handler for clicking "Book Now" button
+  const handleBookNow = () => {
+    // Implement booking functionality here
+    toast.success("Booking added!");
+  };
+
   const checkBestPrices = (event) => {
     event.preventDefault();
     console.log("CLICK");
+    const departureDateVar = new Date(departureDate);
+    const returnDateVar = new Date(returnDate);
+    setDifferenceInDays(Math.abs(departureDateVar - returnDateVar) / (1000 * 3600 * 24));
+    toast.info("Available Bookings !");
     setPrice(true);
   };
 
@@ -69,11 +128,16 @@ const Book = () => {
       event.checked && event.id === "one-way" ? "visible" : "hidden";
   };
 
+  const handleNumOfPassengers = (event) => {
+    setPassengers(event.target.value);
+  }
+
   return (
     <div
       name="book"
       className="book w-full relative p-8 mb-6 mt-4"
     >
+      
       <div className="w-full md:max-w-screen-lg h-full mx-auto flex flex-col justify-center items-center">
         <h1>Find the best prices</h1>
 
@@ -118,27 +182,27 @@ const Book = () => {
                 </div>
                 <div>
                   <label className="block">Passengers</label>
-                  <select>
+                  <select onChange={handleNumOfPassengers}>
                     <option value="1">1 Passenger</option>
-                    <option value="1">2 Passengers</option>
-                    <option value="1">3 Passengers</option>
-                    <option value="1">4 Passengers</option>
-                    <option value="1">5 Passengers</option>
-                    <option value="1">6 Passengers</option>
-                    <option value="1">7 Passengers</option>
-                    <option value="1">8 Passengers</option>
-                    <option value="1">9 Passengers</option>
+                    <option value="2">2 Passengers</option>
+                    <option value="3">3 Passengers</option>
+                    <option value="4">4 Passengers</option>
+                    <option value="5">5 Passengers</option>
+                    <option value="6">6 Passengers</option>
+                    <option value="7">7 Passengers</option>
+                    <option value="8">8 Passengers</option>
+                    <option value="9">9 Passengers</option>
                   </select>
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 col-span-1 md:col-span-3 gap-4 pb-4 place-items-stretch">
                 <div id="departure-date" className="w-full">
                   <label className="block">Departure Date</label>
-                  <input type="date" />
+                  <input type="date" defaultValue={departureDate} onChange={(e) => setDepartureDate(e.target.value)}/>
                 </div>
                 <div id="return-date" className="w-full">
                   <label className="block">Return Date</label>
-                  <input type="date" />
+                  <input type="date" defaultValue={returnDate} onChange={(e) => setReturnDate(e.target.value)}/>
                 </div>
                 <div className="pt-6">
                   <button
@@ -153,126 +217,74 @@ const Book = () => {
           </div>
           {price ? (
             <div className="min-w-full bg-slate-600/30 rounded-md px-60 py-4">
-              <p className="font-bold">Flights</p>
-              <hr class="h-px my-1 bg-slate-200/50 border-0 dark:bg-slate-300" />
-              <div className="pl-10">
-                <div className="flex justify-start items-center">
-                  <input
-                      type="radio"
-                      id="one-way"
-                      name="flight-selection"
-                      value="Qatar"
-                    />
-                  <div className="font-normal ml-3">Qatar Airways</div>
-                  <div className="text-red-400 font-semibold ml-auto">
-                    $70
-                  </div>
-                </div>
-                <div className="flex justify-start items-center">
-                  <input
+            {BookingData.map(destination => (
+              <div key={destination.id}>
+                <p className="font-bold">{destination.name}</p>
+                <hr className="h-px my-1 bg-slate-200/50 border-0 dark:bg-slate-300" />
+                <div className="pl-10">
+                  {destination.flights.map(flight => (
+                    <div key={flight.id} className="flex justify-start items-center">
+                      <input
                         type="radio"
-                        id="one-way"
-                        name="flight-selection"
-                        value="Eurowings"
+                        id={flight.id}
+                        name={`${destination.name}-flight`}
+                        value={flight.name}
+                        onChange={() => handleFlightSelection(flight)}
                       />
-                  <div className="font-normal ml-3">Eurowings</div>
-                  <div className="text-red-400 font-semibold ml-auto">
-                    $68
-                  </div>
+                      <div className="font-normal ml-3">{flight.name}</div>
+                      <div className="text-red-400 font-semibold ml-auto">
+                        ${flight.price*passengers}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex justify-start items-center">
-                  <input
+                <hr className="h-px my-1 bg-slate-200/50 border-0 dark:bg-slate-300" />
+                <div className="pl-10">
+                  {destination.hotels.map(hotel => (
+                    <div key={hotel.id} className="flex justify-start items-center">
+                      <input
                         type="radio"
-                        id="one-way"
-                        name="flight-selection"
-                        value="Emirates"
+                        id={hotel.id}
+                        name={`${destination.name}-hotel`}
+                        value={hotel.name}
+                        onChange={() => handleHotelSelection(hotel)}
                       />
-                  <div className="font-normal ml-3">Emirates</div>
-                  <div className="text-red-400 font-semibold ml-auto">
-                    $70
-                  </div>
+                      <div className="font-normal ml-3">{hotel.name}</div>
+                      <div className="text-red-400 font-semibold ml-auto">
+                        ${hotel.price*differenceInDays*passengers}
+                      </div>
+                    </div>
+                  ))}
                 </div>
+                <hr className="h-px my-1 bg-slate-200/50 border-0 dark:bg-slate-300" />
+                <div className="pl-10">
+                  {destination.guides.map(guide => (
+                    <div key={guide.id} className="flex justify-start items-center">
+                      <input
+                        type="radio"
+                        id={guide.id}
+                        name={`${destination.name}-guide`}
+                        value={guide.name}
+                        onChange={() => handleGuideSelection(guide)}
+                      />
+                      <div className="font-normal ml-3">{guide.name}</div>
+                      <div className="text-red-400 font-semibold ml-auto">
+                        ${guide.price}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <hr className="h-px my-1 bg-slate-700 border-0 dark:bg-slate-700" />
               </div>
-
-              <p className="font-bold">Hotel</p>
-              <hr class="h-px my-1 bg-slate-200/50 border-0 dark:bg-slate-300" />
-              <div className="pl-10">
-                <div className="flex justify-start items-center">
-                  <input
-                      type="radio"
-                      id="one-way"
-                      name="hotel-selection"
-                      value="Qatar"
-                    />
-                  <div className="font-normal ml-3">Icos Aria</div>
-                  <div className="text-red-400 font-semibold ml-auto">
-                    $70
-                  </div>
-                </div>
-                <div className="flex justify-start items-center">
-                  <input
-                        type="radio"
-                        id="one-way"
-                        name="hotel-selection"
-                        value="Eurowings"
-                      />
-                  <div className="font-normal ml-3">Hotel Colline</div>
-                  <div className="text-red-400 font-semibold ml-auto">
-                    $68
-                  </div>
-                </div>
-                <div className="flex justify-start items-center">
-                  <input
-                        type="radio"
-                        id="one-way"
-                        name="hotel-selection"
-                        value="Emirates"
-                      />
-                  <div className="font-normal ml-3">Tulemar Resort</div>
-                  <div className="text-red-400 font-semibold ml-auto">
-                    $70
-                  </div>
-                </div>
-              </div>
-
-              <p className="font-bold">Guide</p>
-              <hr class="h-px my-1 bg-slate-200/50 border-0 dark:bg-slate-300" />
-              <div className="pl-10">
-                <div className="flex justify-start items-center">
-                  <input
-                      type="radio"
-                      id="one-way"
-                      name="guide-selection"
-                      value="Qatar"
-                    />
-                  <div className="font-normal ml-3">Full Time</div>
-                  <div className="text-red-400 font-semibold ml-auto">
-                    $90
-                  </div>
-                </div>
-                <div className="flex justify-start items-center">
-                  <input
-                        type="radio"
-                        id="one-way"
-                        name="guide-selection"
-                        value="Eurowings"
-                      />
-                  <div className="font-normal ml-3">Part Time</div>
-                  <div className="text-red-400 font-semibold ml-auto">
-                    $50
-                  </div>
-                </div>
-              </div>
-
-              <hr class="h-px my-1 bg-slate-700 border-0 dark:bg-slate-700" />
-              <div className="flex justify-start items-center">
-                  <div className="font-bold">Total</div>
-                  <div className="text-red-400 font-semibold ml-auto">
-                    $350
-                  </div>
-                </div>
-              <button className="primary w-full mt-4">Book Now</button>
+            ))}
+            <div className="flex justify-start items-center">
+              <div className="font-bold">Total</div>
+              <div className="text-red-400 font-semibold ml-auto">${price}</div>
             </div>
+            <button className="primary w-full mt-4" onClick={handleBookNow}>
+              Book Now
+            </button>
+          </div>
           ) : (
             <>
               <p>
