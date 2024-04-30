@@ -1,4 +1,5 @@
 import React from "react";
+import {ToastContainer } from 'react-toastify';
 import {
   ApolloProvider,
   ApolloClient,
@@ -26,7 +27,8 @@ import NoMatch from "./pages/NoMatch";
 import SinglePost from "./pages/SinglePost";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
-import DestinationBooking from "./pages/DestinationBooking"
+import DestinationBooking from "./pages/DestinationBooking";
+import Booking from "./pages/Booking";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -51,6 +53,19 @@ const loggedIn = Auth.loggedIn();
 
 function App() {
   return (
+    <>
+    <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      />
     <ApolloProvider client={client}>
       <Router>
         <div className="pages">
@@ -71,12 +86,14 @@ function App() {
               <Route path="" element={<Profile />} />
             </Route>
             <Route path="/post/:id" element={<SinglePost />} />
+            <Route path="/booking" element={<Booking />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
         </div>
         <Footer />
       </Router>
     </ApolloProvider>
+    </>
   );
 }
 
